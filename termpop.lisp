@@ -15,4 +15,10 @@
         (shrink-window 12)
         (vterm (generate-new-buffer-name "*vterm*"))))))
 
+(defun termpop-cleanup (process event)
+  "Delete the window after exiting vterm"
+  (delete-window))
+
+(add-hook 'vterm-exit-functions 'termpop-cleanup)
+
 (global-set-key (kbd "<f9>") 'term-pop)
