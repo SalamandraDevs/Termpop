@@ -1,6 +1,6 @@
 ;; Terminal pop, change with your favorite terminal emulator
 (defun termpop ()
-  "Divide window horizontally and lauch vterm on the bottom window"
+  "Divide window horizontally and launch vterm on the bottom window"
   (interactive)
   (let* ((default-directory (or (file-name-directory (buffer-file-name)) default-directory))
          (next-buffer (window-buffer (next-window)))
