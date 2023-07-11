@@ -7,5 +7,5 @@ An elisp script to launch your favorite terminal in a new bottom window, emulati
 
 ## Future work
 * For now Termpop just opens with horizontal divition, vertical divition is not supported yet and will be supported later.
-* When you exit vterm the window remains opened, so in the future termpop will colse his former window.
+* ~~When you exit vterm the window remains opened, so in the future termpop will colse his former window.~~
 * Termpop have to be finally designed to work in the bottom window, if the frame is already divided into two or more windows, termpop have to be lauched in the last bottom window and not do any furter division.
