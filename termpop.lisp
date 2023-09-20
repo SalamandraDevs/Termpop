@@ -3,17 +3,19 @@
   "Divide window horizontally and launch vterm on the bottom window"
   (interactive)
   (let* ((default-directory (or (file-name-directory (buffer-file-name)) default-directory))
-         (next-buffer (window-buffer (next-window)))
+         (next-window (next-window))
+         (next-buffer (window-buffer next-window))
          (next-buffer-major-mode (buffer-local-value 'major-mode next-buffer)))
     (if (eq next-buffer-major-mode 'vterm-mode)
         (progn
-          (select-window (next-window))
+          (select-window next-window)
           (vterm-send-return))
       (progn
         (split-window-below)
         (other-window 1)
         (shrink-window 12)
-        (vterm (generate-new-buffer-name "*vterm*"))))))
+        (vterm (generate-new-buffer-name "*vterm*"))
+        (set-window-dedicated-p (selected-window) t)))))
 
 (defun termpop-cleanup (process event)
   "Delete the window after exiting vterm"
@@ -21,4 +23,5 @@
 
 (add-hook 'vterm-exit-functions 'termpop-cleanup)
 
-(global-set-key (kbd "<f9>") 'term-pop)
+(global-set-key (kbd "<f9>") 'termpop)
+(global-set-key (kbd "C-c v") 'vterm-copy-mode)
